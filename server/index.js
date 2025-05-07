@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const pool = require('./db'); // Import the database connection pool
+const pool = require('./db'); 
 
 // Middleware
 app.use(cors());
@@ -48,7 +48,32 @@ app.get("/todo/:id", async(req,res) => {
 });
 
 // update a todo
+app.put("/todo/:id", async(req,res) => {
+    try {
+        const { id } = req.params;
+        const { description } = req.body;
+        const updateTodo = await pool.query(
+            "UPDATE todo SET description = $1 WHERE todo_id = $2",
+            [description, id]
+        );
+        res.json("Todo was updated!");
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+});
 
+// delete a todo
+app.delete("/todo/:id", async(req,res) => {
+    try {
+        const { id } = req.params;
+        const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [id]);
+        res.json("Todo was deleted!");
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+});
 
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
