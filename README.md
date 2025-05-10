@@ -97,18 +97,16 @@ The backend provides the following RESTful API endpoints:
 - `POST /todos` - Create a new todo
 - `DELETE /todos/:id` - Delete a todo by ID
 
-## Project Structure
-todo-app/
-├── backend/
-│ ├── index.js
-│ ├── db.js
-│ └── .env
-├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ │ ├── InputTodo.jsx
-│ │ │ └── ListTodos.jsx
-│ │ ├── App.jsx
-│ │ └── main.jsx
-│ └── public/
-└── README.md
+## Features in Detail
+
+### Frontend
+- Modern, responsive UI with smooth animations
+- Real-time updates without page refresh
+- Form validation and error handling
+- Clean component architecture
+
+### Backend
+- RESTful API design
+- PostgreSQL database integration
+- Error handling middleware
+- CORS enabled for cross-origin requests
